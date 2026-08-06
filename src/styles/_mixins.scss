@@ -1,0 +1,19 @@
+@use "variables";
+
+@mixin small-text {
+  font-family: variables.$font-family-body;
+  font-size: variables.$font-size-small;
+}
+
+@mixin section-heading {
+  @include small-text;
+  font-weight: normal;
+  text-align: center;
+}
+
+@mixin footnote-element {
+  @include small-text;
+  margin-top: 5rem;
+  padding-top: 4rem;
+  border-top: 1px solid;
+}

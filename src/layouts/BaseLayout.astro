@@ -1,0 +1,34 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.scss";
+
+const { pageTitle, copyright, copyrightYear, variant } = Astro.props;
+let documentTitle: string | undefined = "Yvonne Toros";
+if (!pageTitle.includes(documentTitle)) {
+  documentTitle = `Yvonne Toros : ${pageTitle}`;
+}
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={ Astro.generator } />
+    <meta name="description" content={ documentTitle } />
+    <title>{ documentTitle }</title>
+  </head>
+
+  <body>
+    <div class="page">
+      <Header />
+
+      <main class={ variant }>
+        <h1>{ pageTitle }</h1>
+        <slot />
+      </main>
+
+      <Footer copyright={ copyright } copyrightYear={ copyrightYear } />
+    </div>
+  </body>
+</html>

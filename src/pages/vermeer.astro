@@ -1,0 +1,38 @@
+---
+import ContentLayout from "../layouts/ContentLayout.astro";
+import LinkPreview from "../components/LinkPreview.astro";
+import Vermeer from "../content/vermeer.md";
+import { getRijksmuseumImage } from "../lib/rijksmuseum";
+
+const pageTitle: string = "Vermeer et sa ‘camera obscura’";
+const rijksmuseum: string = "https://www.rijksmuseum.nl/en/press/press-releases/revelatory-new-insights-unveiled-in-new-vermeer-biography"
+const iiifImageURL: string | undefined = await getRijksmuseumImage();
+---
+
+<ContentLayout pageTitle={ pageTitle } copyright={ "L’Harmattan" } copyrightYear={ "2025" } >
+  <LinkPreview url={ rijksmuseum } />
+  <h2>Yvonne Toros</h2>
+  <h2>Extraits d’<em>Espace et transformation : Spinoza</em> (prologue), 1982</h2>
+  <img class="straatje" src={ iiifImageURL } alt="La Ruelle" title="La Ruelle" />
+  <p class="custom-figcaption">'La Ruelle' de Vermeer</p>
+  <Vermeer />
+</ContentLayout>
+
+<style lang="scss">
+  @use "../styles/_variables";
+  @use "../styles/_mixins";
+
+  img.straatje {
+    display: block;
+    max-width: 90%;
+    margin: 2rem auto 0 auto;
+    box-shadow: variables.$normal-shadow;
+  }
+  p.custom-figcaption {
+    @include mixins.small-text;
+    text-align: center;
+    font-style: italic;
+    padding-top: 0.8rem;
+    margin: 0;
+  }
+</style>

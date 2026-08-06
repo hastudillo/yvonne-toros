@@ -1,0 +1,28 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    Content-Security-Policy = """
+      default-src 'self';
+      base-uri 'self';
+      form-action 'self';
+      frame-ancestors 'none';
+      object-src 'none';
+      script-src 'self' 'sha256-L5CaQBF4akJiwNP/1x9jx+Ln/OSsWe9oEnlhrwrH/PY=';
+      script-src-attr 'none';
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https://www.editions-harmattan.fr https://iiif.micr.io https://www.rijksmuseum.nl;
+      font-src 'self' data:;
+      connect-src 'self';
+      manifest-src 'self';
+      require-trusted-types-for 'script';
+    """
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+    Referrer-Policy = "strict-origin-when-cross-origin"

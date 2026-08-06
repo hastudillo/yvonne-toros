@@ -1,0 +1,33 @@
+---
+import ContentLayout from "../layouts/ContentLayout.astro";
+import TextPost from "../components/TextPost.astro";
+import type { Text } from "../types/text";
+
+const texts: Text[] = Object.values(import.meta.glob('./texts/*.md', { eager: true }));
+const pageTitle: string = "Articles";
+---
+
+<ContentLayout pageTitle={ pageTitle }>
+  <ul>
+    {
+      texts
+      .sort((textA: Text, textB: Text) => {
+        const yearA: number = Number(textA.frontmatter.pubDate.split("-")[1] ? textA.frontmatter.pubDate.split("-")[1] : textA.frontmatter.pubDate.split("-")[0]);
+        const yearB: number = Number(textB.frontmatter.pubDate.split("-")[1] ? textB.frontmatter.pubDate.split("-")[1] : textB.frontmatter.pubDate.split("-")[0]);
+        return yearA - yearB;
+      })
+      .map((text: Text) =>
+        <TextPost url={ text.url } title={ text.frontmatter.title }/>
+      )
+    }
+  </ul>
+</ContentLayout>
+
+<style is:global>
+  ul > li {
+    padding: 2rem 0;
+    & > a {
+      font-size: 1.5rem;
+    }
+  }
+</style>

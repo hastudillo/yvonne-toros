@@ -1,0 +1,72 @@
+---
+const { copyright, copyrightYear } = Astro.props;
+let owner: string | undefined = copyright;
+if (owner === null || owner === undefined) {
+  owner = "Yvonne Toros";
+}
+let year: string | undefined = copyrightYear;
+if (year === null || year === undefined) {
+  year = "2026";
+}
+---
+
+<footer>
+  <div>
+    <p><span>©</span> { owner }, { year }</p>
+    <p><span class="symbol">&</span> Site créé par Hector Astudillo del Valle</p>
+  </div>
+</footer>
+
+
+<style lang="scss">
+  @use "../styles/_variables";
+
+  footer {
+    max-width: variables.$background-image-width;
+    margin: 0 auto;
+    width: 100%;
+    background-color: variables.$twilight-indigo;
+    text-align: center;
+
+    & > div {
+      padding: 0.2rem;
+      display: flex;
+      gap: 0;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      & > p {
+        color: white;
+        font-family: variables.$font-family-body;
+        font-size: 0.9rem;
+        margin: 0;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        & > span {
+          color: variables.$lobster-pink;
+          font-size: 1.1rem;
+          font-weight: bold;
+
+          &.symbol {
+            font-family: variables.$font-special;
+            transform: translateY(-1.5px);
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: variables.$tablet-size) {
+    footer {
+      & > div {
+        flex-wrap: nowrap;
+        gap: 3rem;
+        padding: 0.6rem;
+      }
+    }
+  }
+</style>

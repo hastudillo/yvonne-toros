@@ -1,0 +1,14 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={ frontmatter.title } variant="markdown">
+  <h2>{ frontmatter.author }</h2>
+  {
+    frontmatter.published
+    ? <h3>{ frontmatter.published }</h3>
+    : <h3>{ frontmatter.pubDate.toString() }</h3>
+  }
+  <slot /> 
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+import { fetchLinkPreview } from "../lib/fetchLinkPreview";
+
+const { url } = Astro.props;
+// Server-side fetch (runs at build time or SSR)
+let data;
+try {
+  data = await fetchLinkPreview(url);
+} catch (e: unknown) {
+  data = {
+    url,
+    title: url,
+    description: "",
+    image: "",
+  };
+}
+---
+
+<a class="card" href={ data.url } target="_blank" rel="noopener noreferrer">
+  { data.image && <img src={ data.image } alt="" loading="lazy" /> }
+
+  <div class="content">
+    <p class="very-small">{ new URL(data.url).host }</p>
+    <h3>{ data.title }</h3>
+    { data.description && <p>{ data.description }</p> }
+  </div>
+</a>
+
+
+<style lang="scss">
+  @use "../styles/_variables";
+  @use "../styles/_mixins";
+
+  a.card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 9px;
+    overflow: hidden;
+    text-decoration: none;
+    color: black;
+    max-width: 640px;
+    margin: 3rem auto;
+    transition: transform 0.1s ease;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: variables.$normal-shadow;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    & > img {
+      display: block;
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      background: variables.$charcoal;
+    }
+
+    & > div.content {
+      font-family: variables.$font-family-body;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      & > p {
+        margin: 6px 0;
+        @include mixins.small-text;
+        &.very-small {
+          font-size: 0.8rem;
+        }
+      }
+
+      & > h3 {
+        margin: 0;
+        font-weight: normal;
+        font-size: 1.6rem;
+        text-align: left;
+      }
+    }
+  }
+
+@media screen and (min-width: 640px) {
+  a.card {
+    flex-direction: row;
+      & > img {
+        width: 280px;
+      }
+    }
+  }
+</style>

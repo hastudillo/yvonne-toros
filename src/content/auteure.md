@@ -1,0 +1,7 @@
+Yvonne Toros (Le Caire, 1940 — Lavaur, 2025) a étudié puis enseigné la Philosophie en Suisse, Paris et Metz. Néanmoins elle a mené la plupart de sa vie professionnelle en dehors de l’université, dont plus de 20 ans comme directeur administratif à la Fédération des aveugles de France, sans interrompre ses recherches, notamment sur Spinoza. Elle a étudié le bouddhisme pendant plus de 15 ans.
+
+Lors de son arrivée, un peu en retard, à un cours de Gilles Deleuze à Vincennes-Saint Denis, elle entend parler de la géométrie projective de Girard Desargues (1591–1661), dont il est considéré comme étant le père… Le fait de rejoindre un exposé déjà en cours, le manque d’avertissement sur le sujet, lui ont néanmoins permis d’établir, comme spontanément, un lien qui irait de Desargues à la philosophie de Baruch de Spinoza (1632–1677). Cette intuition guidera la plupart de ses travaux ultérieurs.
+
+Après avoir soutenu en 1982 _Espace et transformation : Spinoza_, sa Thèse de Troisième Cycle en Philosophie (Paris I Panthéon-Sorbonne) sous la direction de Michel Serres, Yvonne Toros a pu travailler avec Gilles Deleuze sur _Spinoza et l’espace projectif_, sa Thèse d’État (la dernière qu’il aura personellement dirigée) alors qu’il souffrait déjà de graves problèmes de santé.
+
+C’est précisément à cause de ces aléas, puis à cause de la mort de Deleuze lui-même, que l’accès à ses travaux est resté très limité.

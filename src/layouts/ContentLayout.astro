@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Site from "../content/site.md";
+const { pageTitle } = Astro.props;
+---
+
+<BaseLayout pageTitle={ pageTitle }>
+  <slot />
+  <slot name="before-footer" />
+  <div class="small-block">
+    <Site />
+  </div>
+</BaseLayout>

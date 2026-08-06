@@ -1,0 +1,42 @@
+---
+import ContentLayout from "../layouts/ContentLayout.astro";
+import LinkPreview from "../components/LinkPreview.astro";
+import Accueil from "../content/accueil.md";
+import SurCeSIte from "../content/sur-ce-site.md";
+
+const pageTitle: string = "Yvonne Toros";
+const informatique_et_philosophie: string = "https://www.persee.fr/doc/phlou_0035-3841_1984_num_82_55_6302"
+const spinoza_et_lespace_projectif: string = "https://www.editions-harmattan.fr/catalogue/livre/spinoza-et-l-8217-espace-projectif/74017";
+const spinoza_espace_et_transformation: string = "https://www.editions-harmattan.fr/catalogue/livre/spinoza-espace-et-transformation/79553"
+const traite_de_larc_en_ciel: string = "https://www.editions-harmattan.fr/catalogue/livre/traite-de-l-arc-en-ciel/77349"
+---
+
+<ContentLayout pageTitle={ pageTitle }>
+  <div class="accueil">
+    <Accueil />
+  </div>
+  <SurCeSIte />
+  <div slot="before-footer">
+    <LinkPreview url={ informatique_et_philosophie } />
+    <LinkPreview url={ spinoza_et_lespace_projectif } />
+    <LinkPreview url={ spinoza_espace_et_transformation } />
+    <LinkPreview url={ traite_de_larc_en_ciel } />
+  </div>
+</ContentLayout>
+
+<style lang="scss" is:global>
+  @use "../styles/_variables";
+
+  body > div.page > main > h4 {
+    margin: 5rem 3rem;
+  }
+  .accueil {
+    font-family: variables.$font-family-body;
+    font-size: variables.$font-size-body;
+    margin: 10rem 3rem;
+    text-align: center;
+  }
+  ul > li {
+    padding: 1rem 0;
+  }
+</style>

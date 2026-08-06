@@ -1,0 +1,254 @@
+@use "variables";
+@use "mixins";
+@use "fonts";
+
+@import "katex/dist/katex.min.css";
+
+/* katex */
+.base {
+  font-size: variables.$default-line-height;
+}
+
+body {
+  margin: 0;
+  background: variables.$charcoal;
+  line-height: variables.$default-line-height;
+
+  & > div.page {
+    position: relative;
+    width: 100%;
+    max-width: variables.$background-image-width;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: variables.$sand-dune;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: variables.$z-index-zero;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(variables.$sand-dune, $alpha: 0.85) 0%,
+          rgba(variables.$sand-dune, $alpha: 1)
+        ),
+        url("/assets/Maniere_universelle_de_M_Desargues-96-croped-2.webp") top
+          left / variables.$background-image-width auto no-repeat;
+    }
+
+    & > main,
+    & > footer {
+      position: relative;
+      z-index: variables.$z-index-one;
+    }
+
+    & > main {
+      padding: 4rem 3rem 3rem 3rem;
+      min-height: 75vh;
+
+      /* heading elements */
+
+      &.markdown > h1 {
+        font-size: 2.5rem;
+      }
+      & > h1 {
+        font-family: variables.$font-family-heading;
+        font-size: 3.5rem;
+        text-align: center;
+        margin-bottom: 3.5rem;
+        line-height: 3.5rem;
+      }
+      & > h2 {
+        @include mixins.section-heading;
+        text-transform: uppercase;
+      }
+      & > h3 {
+        @include mixins.section-heading;
+        &:last-of-type {
+          margin-bottom: 5rem;
+        }
+      }
+      & > h4 {
+        font-family: variables.$font-family-body;
+        font-size: variables.$font-size-body;
+        margin: 3rem;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      & > h5 {
+        @include mixins.section-heading;
+        text-transform: uppercase;
+      }
+
+      & > table {
+        @include mixins.small-text;
+        margin: 0px auto;
+        text-align: left;
+        border-collapse: collapse;
+        display: block;
+        overflow-x: auto;
+        max-width: 100%;
+        white-space: nowrap;
+        border: 1px solid;
+        th {
+          font-weight: normal;
+          font-style: italic;
+        }
+        th,
+        td {
+          border: 1px solid;
+          padding: 0.3rem;
+        }
+      }
+
+      & > p,
+      & > ul,
+      & > ol,
+      & > blockquote {
+        font-family: variables.$font-family-body;
+        font-size: variables.$font-size-body;
+      }
+
+      & > div.small-block {
+        margin-top: 5rem;
+      }
+      & > div.small-block > p {
+        @include mixins.small-text;
+      }
+
+      /* images */
+
+      & > figure {
+        @include mixins.small-text;
+        text-align: center;
+        max-width: 100%;
+
+        & > div.figure-scroll {
+          overflow-x: auto;
+          box-shadow: variables.$normal-shadow;
+
+          & > img {
+            max-height: 500px;
+          }
+        }
+
+        & > figcaption {
+          text-align: center;
+          font-family: variables.$font-family-body;
+          font-style: italic;
+          padding-top: 0.8rem;
+        }
+      }
+
+      /* footnotes and references */
+      & sup {
+        font-size: 0.8rem;
+        line-height: 1;
+        position: relative;
+        vertical-align: super;
+      }
+
+      & > section.footnotes {
+        /* remove "Footnotes" text */
+        & > h2 {
+          display: none;
+        }
+        & > ol {
+          @include mixins.footnote-element;
+          & > li > p {
+            @include mixins.small-text;
+            margin-top: 0;
+          }
+        }
+      }
+
+      /* custom footnote */
+      #fn-custom {
+        @include mixins.footnote-element;
+        & > p {
+          @include mixins.small-text;
+          margin: 0 2rem;
+        }
+      }
+
+      /* replaces the backref symbol */
+      a[data-footnote-backref] {
+        font-size: 0;
+        &::before {
+          content: "^";
+          @include mixins.small-text;
+        }
+      }
+    }
+  }
+}
+
+/* scroll margin with the height of the header if menu is expanded */
+body:has(.menu[aria-expanded="true"]) {
+  [id^="#{variables.$sanitized-clobber-prefix}fn-"],
+  [id^="#{variables.$sanitized-clobber-prefix}fnref-"],
+  #fnref-custom {
+    scroll-margin-top: variables.$menu-open-height;
+  }
+}
+
+@media screen and (min-width: variables.$phone-size) {
+  body {
+    & > div.page {
+      & > main {
+        &.markdown > h1 {
+          font-size: 3rem;
+        }
+        & > h1 {
+          font-size: 5rem;
+          margin-bottom: 5rem;
+          line-height: 5rem;
+        }
+        & > figure {
+          & > div.figure-scroll {
+            overflow-x: visible;
+            box-shadow: none;
+            & > img {
+              max-width: none;
+              box-shadow: variables.$normal-shadow;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: variables.$tablet-size) {
+  body {
+    & > div.page {
+      & > main {
+        & > table {
+          display: table;
+        }
+      }
+    }
+  }
+  /* scroll margin with the height of the header */
+  [id^="#{variables.$sanitized-clobber-prefix}fn-"],
+  [id^="#{variables.$sanitized-clobber-prefix}fnref-"],
+  #fnref-custom {
+    scroll-margin-top: variables.$header-height;
+  }
+}
+
+/* background image width */
+@media (min-width: variables.$background-image-width) {
+  body {
+    &::before {
+      background-position: center top;
+    }
+    & > div.page {
+      & > main {
+        padding: 6rem 6rem 3rem 6rem;
+      }
+    }
+  }
+}
