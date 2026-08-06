@@ -11,7 +11,8 @@ Created with [Astro](https://astro.build/).
 ```text
 /
 ├── public/              # Static files served as-is (favicon, robots.txt, ...)
-│   └── assets/          # Images
+│   ├── assets/          # Images
+│   └── fonts/           # Fonts
 ├── src/
 │   ├── components/      # Reusable Astro/UI components
 │   ├── content/         # Markdown files imported into pages
@@ -24,6 +25,7 @@ Created with [Astro](https://astro.build/).
 │   ├── styles/          # Global styles and CSS utilities
 │   └── types/           # Shared TypeScript types
 ├── astro.config.ts      # Astro configuration
+├── netlify.toml         # Netlify deployement file
 ├── package.json         # Project metadata and dependencies
 └── tsconfig.json        # TypeScript configuration
 ```
