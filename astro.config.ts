@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import { unified } from "@astrojs/markdown-remark";
+import sitemap from "@astrojs/sitemap";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
@@ -24,6 +25,7 @@ const schema: Schema = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://yvonnetoros.com",
+  integrations: [sitemap()],
   markdown: {
     processor: unified({
       remarkPlugins: [remarkMath, frenchSpacing, customFigcaption],
